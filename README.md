@@ -1,6 +1,6 @@
-# web-dev
+# @koddsson/local-db
 
-Here's my preferred setup for web development. Feel free to use this template for your own projects.
+Simple frontend database backed by localStorage.
 
 ## Technology used
 

@@ -1,7 +1,7 @@
 {
   "name": "@koddsson/local-db",
   "version": "0.0.1",
-  "description": "",
+  "description": "Simple frontend database backed by localStorage",
   "type": "module",
   "main": "index.js",
   "module": "index.js",

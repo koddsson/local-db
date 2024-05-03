@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Simple frontend database backed by localStorage",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "prebuild": "npm run build:css",
     "build": "rollup -c rollup.config.js",

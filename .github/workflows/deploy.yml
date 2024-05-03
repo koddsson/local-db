@@ -1,4 +1,4 @@
-name: Deploy with GitHub Pages
+name: Publish on NPM
 
 on:
   release:

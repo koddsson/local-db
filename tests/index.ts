@@ -38,6 +38,12 @@ describe('the db', () => {
     expect(db.all).to.deep.equal([item]);
   });
 
+  it('can insert data', () => {
+    const items = [datum(), datum(), datum()];
+    db.insert(...items);
+    expect(db.all).to.deep.equal(items);
+  });
+
   it('can find specific datum', () => {
     const items = [datum(), datum(), datum()];
     db.insert(items[0]);
@@ -66,5 +72,29 @@ describe('the db', () => {
     expect(db.all).to.deep.equal(items);
     db.removeAll();
     expect(db.all).to.be.empty;
+  });
+
+  describe('fires a change event', () => {
+    it('when data is inserted', async () => {
+      const oneEvent = new Promise<void>((resolve) => {
+        db.addEventListener('change', () => resolve(), { once: true });
+      });
+      db.insert(datum());
+      await oneEvent;
+    });
+
+    it('when data is removed', async () => {
+      const items = [datum(), datum(), datum()];
+      db.insert(items[0]);
+      db.insert(items[1]);
+      db.insert(items[2]);
+      expect(db.all).to.deep.equal(items);
+
+      const oneEvent = new Promise<void>((resolve) => {
+        db.addEventListener('change', () => resolve(), { once: true });
+      });
+      db.remove(items[2]);
+      await oneEvent;
+    });
   });
 });

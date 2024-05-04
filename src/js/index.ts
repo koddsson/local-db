@@ -1,7 +1,14 @@
-export class DB<T> {
+class DBChangeEvent<T> extends CustomEvent<T> {
+  constructor() {
+    super('change');
+  }
+}
+
+export class DB<T> extends EventTarget {
   #key: string;
 
   constructor(key: string) {
+    super();
     this.#key = key;
   }
 
@@ -25,17 +32,18 @@ export class DB<T> {
     this.#save(filtered);
   }
 
-  insert(item: T) {
-    this.#save([...this.all, item]);
+  insert(...items: T[]) {
+    this.#save([...this.all, ...items]);
   }
 
   #save(items: T[]) {
     const encoded = JSON.stringify(items);
     window.localStorage.setItem(this.#key, encoded);
+    this.dispatchEvent(new DBChangeEvent());
   }
 
   removeAll() {
-    window.localStorage.setItem(this.#key, '[]');
+    this.#save([]);
   }
 
   get all(): T[] {

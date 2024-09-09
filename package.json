@@ -25,7 +25,7 @@
   "prettier": "@koddsson/prettier-config",
   "homepage": "https://github.com/koddsson/local-db#readme",
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^9.0.0",
     "@koddsson/eslint-config": "^1.1.0",
     "@koddsson/prettier-config": "^2.0.0",
     "@open-wc/testing": "^4.0.0",
